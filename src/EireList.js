@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Image } from "react-native";
-import { Box, FlatList, Center, NativeBaseProvider, Text } from "native-base";
+import { Box, FlatList, NativeBaseProvider, Text } from "native-base";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({

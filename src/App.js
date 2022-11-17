@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EireMap from './EireMap';
 import Details from './Details';
+import MarkerDetails from './MarkerDetails';
 
 const Tab = createBottomTabNavigator();
 const myIcon = <Icon size={30} color="#900" />;
@@ -29,7 +30,6 @@ function ProfileScreen({ navigation }) {
         </View>
     );
 }
-
 
 export default class App extends Component {
     constructor(props) {

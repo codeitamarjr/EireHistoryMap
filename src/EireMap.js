@@ -89,6 +89,7 @@ export default class EireMap extends Component {
                 key={singleMarker.id}
                 coordinate={{ latitude: singleMarker.latitude, longitude: singleMarker.longitude }}
                 title={singleMarker.name}
+                onCalloutPress={() => this.props.navigation.navigate('Details', { marker: singleMarker })}
             >
                 <Callout>
                     <Text style={{ fontSize: 20, color: 'green' }}>{this.getMarkerType(singleMarker.place_type_id)} |
@@ -98,7 +99,7 @@ export default class EireMap extends Component {
                     <Text style={{ fontSize: 15, color: 'gray' }}>{singleMarker.latitude}, {singleMarker.longitude}</Text>
                     <View>
                         <Image
-                            style={{ width: 300, height: 100, marginTop: 10, marginBottom: 10, backgroundMode: 'contain' }}
+                            style={{ width: 300, height: 100, marginTop: 10, marginBottom: 10, backgroundMode: 'contain', borderRadius: 10 }}
                             source={{ uri: 'https://picsum.photos/300/200' }} />
                         <Text>More info</Text>
                     </View>
