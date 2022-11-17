@@ -68,13 +68,13 @@ export default class App extends Component {
                                         <Icon name="map" color={color} size={size} />
                                     ),
                                 }}
-                                name="Éire Map"
+                                name="Éire Historical Map"
                                 component={EireMap} />
 
                             <Tab.Screen
                                 options={{
                                     tabBarIcon: ({ color, size }) => (
-                                        <Icon name="book" color={color} size={size} />
+                                        <Icon name="list" color={color} size={size} />
                                     ),
                                 }}
                                 name="Details"

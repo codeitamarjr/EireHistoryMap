@@ -1,8 +1,7 @@
 import { Button } from 'native-base';
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import MapView, { Callout, Marker } from 'react-native-maps';
-
 
 const styles = StyleSheet.create({
     container: {
@@ -16,7 +15,6 @@ const styles = StyleSheet.create({
 });
 
 export default class EireMap extends Component {
-
     // Start of markerList and typeList
     state = { markerList: [], typeList: [] }
 
@@ -93,10 +91,17 @@ export default class EireMap extends Component {
                 title={singleMarker.name}
             >
                 <Callout>
-                    <Text style={{ fontSize: 20, color: 'red' }}>{singleMarker.name}</Text>
+                    <Text style={{ fontSize: 20, color: 'green' }}>{this.getMarkerType(singleMarker.place_type_id)} |
+                        <Text style={{ fontSize: 20, color: 'red' }}> {singleMarker.name}</Text></Text>
                     {singleMarker.gaelic_name ? <Text style={{ fontSize: 20, color: 'blue' }}>Gaelic name: {singleMarker.gaelic_name}</Text> : null}
-                    <Text style={{ fontSize: 20, color: 'green' }}>Type: {this.getMarkerType(singleMarker.place_type_id)}</Text>
-                    <Text style={{ fontSize: 15, color: 'gray' }}>Coordinates {singleMarker.latitude}, {singleMarker.longitude}</Text>
+                    <Text style={{ fontSize: 15, color: 'gray' }}>Coordinates:</Text>
+                    <Text style={{ fontSize: 15, color: 'gray' }}>{singleMarker.latitude}, {singleMarker.longitude}</Text>
+                    <View>
+                        <Image
+                            style={{ width: 300, height: 100, marginTop: 10, marginBottom: 10, backgroundMode: 'contain' }}
+                            source={{ uri: 'https://picsum.photos/300/200' }} />
+                        <Text>More info</Text>
+                    </View>
                 </Callout>
             </Marker >)
     }
