@@ -7,6 +7,7 @@ import EireMap from './EireMap';
 import Details from './Details';
 import MarkerDetails from './MarkerDetails';
 
+
 const Tab = createBottomTabNavigator();
 const myIcon = <Icon size={30} color="#900" />;
 
@@ -14,10 +15,6 @@ function HomeScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen</Text>
-            <Button
-                title="Details"
-                onPress={() => navigation.navigate('Details')}
-            />
         </View>
     );
 }

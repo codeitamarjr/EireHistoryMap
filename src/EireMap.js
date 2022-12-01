@@ -1,6 +1,7 @@
 import { Button } from 'native-base';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import MapView, { Callout, Marker } from 'react-native-maps';
 
 const styles = StyleSheet.create({
