@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MapView, { Callout, Marker } from 'react-native-maps';
+import SelectDropdown from 'react-native-select-dropdown'
 
 const styles = StyleSheet.create({
     container: {
@@ -40,6 +41,52 @@ export default class EireMap extends Component {
                 return type.name;
             }
         })
+    }
+
+    /*
+    / --- getSelectDropDown ---
+    / This function getSelectDropDown() returns a SelectDropdown menu with the name of the types of markers from the typeList
+    / and refreshes the map with the markers of the selected type
+    / each time a new type is selected
+    */
+
+    getSelectDropDown() {
+        return (
+            <SelectDropdown
+                data={this.state.typeList.map((type) => {
+                    return type.name;
+                })}
+                // onSelect applies the typeList.id properties to the markerList.place_type_id
+                onSelect={(selectedItem, index) => {
+                    this.setState({
+                        markerList: this.state.markerList.filter((marker) => {
+                            return marker.place_type_id === this.state.typeList[index].id;
+                        })
+                    })
+                }}
+                buttonStyle={{
+                    backgroundColor: 'white',
+                    borderColor: 'black',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    width: 200,
+                    height: 50,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: 20,
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    return this.state.typeList.map((type) => {
+                        if (type.name === selectedItem) {
+                            return type.name;
+                        }
+                    })
+                }}
+                rowTextForSelection={(item, index) => {
+                    return item
+                }}
+            />
+        )
     }
 
     // Define a different colour for each type of marker
@@ -80,7 +127,15 @@ export default class EireMap extends Component {
         }
     }
 
-    // Maps each marker in the list to a Marker component called singleMarker
+    /*
+    / ------------------- mapMarkers -------------------
+    / This function returns a list of singleMarker based on the markerList
+    / singleMarker is passed to the getMarkerColour function to get the colour of marker
+    / singleMarker is passed to the getMarkerType function to get the type.name of marker from the typeList
+    / singleMarker is compared to the selected type from the dropdown to see if it should be displayed
+    / --------------------------------------------------
+    */
+
     mapMarkers = () => {
         return this.state.markerList.map((singleMarker) =>
             <Marker
@@ -123,6 +178,7 @@ export default class EireMap extends Component {
                 >
                     {this.mapMarkers()}
                 </MapView>
+                {this.getSelectDropDown()}
             </View>
         );
     }

@@ -52,9 +52,12 @@ export default class Details extends Component {
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={styles.title}>Details Screen:</Text>
                 <Image style={styles.image} source={{ uri: this.state.urlImage }} />
+                <Text>This Image is from Unsplash</Text>
                 <Text style={styles.title}>{marker.name}</Text>
                 <Text style={styles.description}>{marker.gaelic_name}</Text>
+                <Text style={styles.description}>Long {marker.latitude} | Lat {marker.longitude}</Text>
                 <Button title="Go back" onPress={() => this.props.navigation.goBack()} />
+                <Text style={styles.description}>This app uses the Unsplash API but is not endorsed or certified by Unsplash.</Text>
             </View>
         );
     }
