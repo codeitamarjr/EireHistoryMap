@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Button, View, Text } from 'react-native';
+import { StyleSheet, Button, View, Text, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -14,8 +14,52 @@ const myIcon = <Icon size={30} color="#900" />;
 function HomeScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-        </View>
+            <ImageBackground source={{ uri: "https://images.unsplash.com/photo-1543191878-f6a3e470454e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" }} resizeMode="cover" style={{
+                width: '100%',
+                height: '100%',
+                justifyContent: 'center',
+            }} >
+                <Text style={{
+                    textAlign: 'center',
+                    fontSize: 30,
+                    color: 'white'
+                }}>Éire Historical Map</Text>
+                <View style={{
+                    backgroundColor: 'rgba(255,255,255,0.8)',
+                    width: '90%',
+                    height: '60%',
+                    justifyContent: 'center',
+                    alignSelf: 'center',
+                    borderRadius: 10,
+                    padding: 10
+                }}>
+                    <Text style={{
+                        textAlign: 'center',
+                        fontSize: 20,
+                        color: 'black'
+                    }}>This is the home screen</Text>
+                    <Text style={{
+                        textAlign: 'center',
+                        fontSize: 20,
+                    }}>Éire History Map App it is a map of Ireland with historical markers on it. The markers are clickable and will display information about the historical event that took place at that location.</Text>
+                    <View style={{
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: 30
+                    }}>
+                        <ImageBackground source={{ uri: "https://www.itjunior.dev/assets/images/me.webp" }} style={{
+                            width: 70,
+                            height: 70,
+                        }} />
+                        <Text style={{
+                            fontSize: 18,
+                            padding: 10
+                        }}>This app was created by Itamar Junior, a student at the Dorset College Dublin for the Mobile Application Development module.</Text>
+                    </View>
+                </View>
+            </ImageBackground>
+        </View >
     );
 }
 
