@@ -25,7 +25,7 @@ function HomeScreen({ navigation }) {
                     color: 'white'
                 }}>Éire Historical Map</Text>
                 <View style={{
-                    backgroundColor: 'rgba(255,255,255,0.8)',
+                    backgroundColor: 'rgba(255,255,255,0.9)',
                     width: '90%',
                     height: '60%',
                     justifyContent: 'center',

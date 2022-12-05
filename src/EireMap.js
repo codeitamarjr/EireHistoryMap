@@ -175,6 +175,17 @@ export default class EireMap extends Component {
                         latitudeDelta: 0.015,
                         longitudeDelta: 0.0121,
                     }}
+                    onLongPress={e => {
+                        this.setState({
+                            markerList: [...this.state.markerList, {
+                                id: this.state.markerList.length + 1,
+                                name: 'Custom Marker',
+                                latitude: e.nativeEvent.coordinate.latitude,
+                                longitude: e.nativeEvent.coordinate.longitude,
+                                place_type_id: 0,
+                            }]
+                        })
+                    }}
                 >
                     {this.mapMarkers()}
                 </MapView>
