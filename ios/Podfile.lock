@@ -306,6 +306,8 @@ PODS:
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
+  - react-native-slider (4.3.3):
+    - React-Core
   - React-perflogger (0.70.6)
   - React-RCTActionSheet (0.70.6):
     - React-Core/RCTActionSheetHeaders (= 0.70.6)
@@ -462,6 +464,7 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -546,6 +549,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-slider:
+    :path: "../node_modules/@react-native-community/slider"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -620,6 +625,7 @@ SPEC CHECKSUMS:
   React-logger: 1623c216abaa88974afce404dc8f479406bbc3a0
   react-native-maps: 085f614cf14d3637b2048bb9752da5b1c27c2886
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
+  react-native-slider: 7d19220da2f2ae7cbb9aa80127cb73c597fa221f
   React-perflogger: 8c79399b0500a30ee8152d0f9f11beae7fc36595
   React-RCTActionSheet: 7316773acabb374642b926c19aef1c115df5c466
   React-RCTAnimation: 5341e288375451297057391227f691d9b2326c3d

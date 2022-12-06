@@ -2,7 +2,7 @@ import { Button } from 'native-base';
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import MapView, { Callout, Marker } from 'react-native-maps';
+import MapView, { Callout, Marker, Circle } from 'react-native-maps';
 import SelectDropdown from 'react-native-select-dropdown'
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 export default class EireMap extends Component {
     // Start of markerList and typeList
-    state = { markerList: [], typeList: [] }
+    state = { markerList: [], typeList: [], radius: {} }
 
     // Fetches the list of markers from JSON address
     componentDidMount() {
@@ -176,6 +176,7 @@ export default class EireMap extends Component {
                         longitudeDelta: 0.0121,
                     }}
                     onLongPress={e => {
+                        // onLongPress adds a new marker to the markerList array
                         this.setState({
                             markerList: [...this.state.markerList, {
                                 id: this.state.markerList.length + 1,
@@ -187,6 +188,35 @@ export default class EireMap extends Component {
                         })
                     }}
                 >
+                    {this.state.markerList.map((marker) => {
+                        if (marker.place_type_id === 0) {
+                            return (
+                                <Circle
+                                    center={{
+                                        // latitude and longitude of the custom marker
+                                        latitude: marker.latitude,
+                                        longitude: marker.longitude
+                                    }}
+                                    radius={10000}
+                                    fillColor={'rgba(0, 0, 255, 0.2)'}
+                                    strokeColor={'rgba(0, 0, 255, 0.5)'}
+                                >
+                                    <Text style={{ fontSize: 20, color: 'blue' }}>
+                                        Number of places within 10 km radius:
+                                        {
+                                            // Counting the number of markers within 10 km radius of the latitude and longitude from the custom marker(marker.latitude and marker.longitude)
+                                            this.state.markerList.filter((singleMarker) => {
+                                                return (Math.abs(singleMarker.latitude - marker.latitude) < 0.1) && (Math.abs(singleMarker.longitude - marker.longitude) < 0.1)
+                                            }
+                                            ).length
+
+                                        }
+                                        Places</Text>
+                                </Circle>
+                            )
+                        }
+                    })}
+
                     {this.mapMarkers()}
                 </MapView>
                 {this.getSelectDropDown()}
