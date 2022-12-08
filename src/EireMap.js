@@ -57,6 +57,9 @@ export default class EireMap extends Component {
                     return type.name;
                 })}
                 // onSelect applies the typeList.id properties to the markerList.place_type_id
+                // to filter the markers based on the type selected
+                // and refreshes the map with the markers of the selected type
+                // each time a new type is selected
                 onSelect={(selectedItem, index) => {
                     this.setState({
                         markerList: this.state.markerList.filter((marker) => {
@@ -175,8 +178,8 @@ export default class EireMap extends Component {
                         latitudeDelta: 0.015,
                         longitudeDelta: 0.0121,
                     }}
+                    // onLongPress adds a new marker to the markerList array
                     onLongPress={e => {
-                        // onLongPress adds a new marker to the markerList array
                         this.setState({
                             markerList: [...this.state.markerList, {
                                 id: this.state.markerList.length + 1,
@@ -188,6 +191,7 @@ export default class EireMap extends Component {
                         })
                     }}
                 >
+                    {/* Draw a circle around the custom marker */}
                     {this.state.markerList.map((marker) => {
                         if (marker.place_type_id === 0) {
                             return (
@@ -201,17 +205,41 @@ export default class EireMap extends Component {
                                     fillColor={'rgba(0, 0, 255, 0.2)'}
                                     strokeColor={'rgba(0, 0, 255, 0.5)'}
                                 >
-                                    <Text style={{ fontSize: 20, color: 'blue' }}>
-                                        Number of places within 10 km radius:
-                                        {
-                                            // Counting the number of markers within 10 km radius of the latitude and longitude from the custom marker(marker.latitude and marker.longitude)
-                                            this.state.markerList.filter((singleMarker) => {
-                                                return (Math.abs(singleMarker.latitude - marker.latitude) < 0.1) && (Math.abs(singleMarker.longitude - marker.longitude) < 0.1)
-                                            }
-                                            ).length
+                                    <View style={{
+                                        borderRadius: 5,
+                                        backgroundColor: 'white',
+                                        margin: 10,
+                                        padding: 10,
 
-                                        }
-                                        Places</Text>
+                                    }}>
+                                        <Text style={{
+                                            fontSize: 20,
+                                            color: 'blue',
+                                            textAlign: 'center',
+                                            textAlignVertical: 'center',
+                                        }}>Number of places within 10 km radius
+                                            {
+                                                // Counting the number of markers within 10 km radius of the latitude and longitude from the custom marker(marker.latitude and marker.longitude)
+                                                this.state.markerList.filter((singleMarker) => {
+                                                    return (Math.abs(singleMarker.latitude - marker.latitude) < 0.1) && (Math.abs(singleMarker.longitude - marker.longitude) < 0.1)
+                                                }
+                                                ).length
+
+                                            } Places</Text>
+                                        <Text>
+                                            Closest place: {
+                                                // Finding the closest place from the custom marker(place_type_id = 0) to the closest place from the markerList
+                                                this.state.markerList.filter((singleMarker) => {
+                                                    return (Math.abs(singleMarker.latitude - marker.latitude) < 0.1) && (Math.abs(singleMarker.longitude - marker.longitude) < 0.1)
+                                                }
+                                                ).sort((a, b) => {
+                                                    return (Math.abs(a.latitude - marker.latitude) + Math.abs(a.longitude - marker.longitude)) - (Math.abs(b.latitude - marker.latitude) + Math.abs(b.longitude - marker.longitude))
+                                                }
+                                                )[1].name
+                                            }
+                                        </Text>
+
+                                    </View>
                                 </Circle>
                             )
                         }
