@@ -39,6 +39,10 @@ The objective of this project is to develop a mobile app to showcase map places 
 - [x] Draw a semi-transparent blue circle around this marker with a radius of 10 km and show the number of places within this radius
 - [ ] [Bonus] Create a slider to control the above radius in km (1-1000, default 10) and on change, update the circle on the map and update the number of places within the radius info shown accordingly
 
+### Screenrecorder
+
+https://youtu.be/8w8DvcM-iOI
+
 ## Special Thanks
 
 Special thank you to Adrian Twarog for his help with Youtube videos:
